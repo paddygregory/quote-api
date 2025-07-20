@@ -14,3 +14,4 @@ Backend built through python you can find on backend.py
 contact:
 reach me @ paddygregory62@gmail.com or @paddygreg0ry on X.
 
+![Quote Generator Preview](demo-png.png)
