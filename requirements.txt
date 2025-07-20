@@ -5,3 +5,4 @@ sqlalchemy
 pydantic
 typing 
 psycopg2_binary
+python-dotenv
