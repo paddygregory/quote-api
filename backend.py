@@ -5,6 +5,8 @@ from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import SQLModel, Field, Session, create_engine, select
 from sqlalchemy import func
+from dotenv import load_dotenv
+import os
 
 # code
 app = FastAPI()
@@ -13,8 +15,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (GitHub Pages, localhost, etc.)
     allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -24,7 +26,9 @@ def read_root():
     return {"message": "Quote API is running!"}
 
 # database
-database = create_engine("sqlite:///quotes.db")
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
+database = create_engine(DATABASE_URL)
 
 class Quote(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)

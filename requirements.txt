@@ -4,3 +4,4 @@ sqlmodel
 sqlalchemy
 pydantic
 typing 
+psycopg2_binary
