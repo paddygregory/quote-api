@@ -1,12 +1,13 @@
 # requirements 
 
-from fastapi import FastAPI, Path, Body
+from fastapi import FastAPI, Path, Body, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import SQLModel, Field, Session, create_engine, select
 from sqlalchemy import func
 from dotenv import load_dotenv
 import os
+import random
 
 # code
 app = FastAPI()
@@ -92,6 +93,14 @@ def get_random_quote(quote_author: str):
             return random_quote
     except Exception as e:
         return {"error": str(e)}
+
+@app.get("/random-quote")
+def get_random_quote():
+    with Session(database) as session:
+        quotes = session.exec(select(Quote)).all()
+        if not quotes:
+            return {"error": "No quotes found"}
+        return random.choice(quotes)
 
 @app.put("/quotes/{quote_id}")
 def update_quote(quote_id: int, quote: QuoteUpdate = Body(
