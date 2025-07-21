@@ -25,7 +25,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Quote API is running!!!!!!"}
+    return {"message": "Quote API is running!!!!!!!"}
 
 # database
 
