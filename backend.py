@@ -7,7 +7,9 @@ from sqlmodel import SQLModel, Field, Session, create_engine, select
 from sqlalchemy import func
 import os
 import random
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = FastAPI()
 
@@ -26,8 +28,8 @@ def read_root():
     return {"message": "Quote API is running!"}
 
 # database
-sqllite_url = "sqlite:///quotes.db"
-database = create_engine(sqllite_url)
+
+database = create_engine(os.environ["DATABASE_URL"])
 
 class Quote(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
