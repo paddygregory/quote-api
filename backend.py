@@ -1,6 +1,6 @@
 # requirements 
 
-from fastapi import FastAPI, Path, Body, HTTPException
+from fastapi import FastAPI, Path, Body, HTTPException, JSONResponse
 from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import SQLModel, Field, Session, create_engine, select
@@ -26,6 +26,11 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "Quote API is running!!!!!!!!!!!!!"}
+
+@app.head("/", include_in_schema=False)
+def head_root():
+    return JSONResponse(headers={"X-App-Status": "Alive"})
+
 
 # database
 load_dotenv()
