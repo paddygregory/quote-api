@@ -26,7 +26,6 @@ def read_root():
     return {"message": "Quote API is running!"}
 
 # database
-load_dotenv()
 sqllite_url = "sqlite:///quotes.db"
 database = create_engine(sqllite_url)
 
