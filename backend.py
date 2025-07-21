@@ -9,7 +9,7 @@ import os
 import random
 from dotenv import load_dotenv
 
-load_dotenv()
+
 
 app = FastAPI()
 
@@ -28,8 +28,13 @@ def read_root():
     return {"message": "Quote API is running!!!!!!!!!!!!"}
 
 # database
+load_dotenv()
 
-database = create_engine(os.getenv("DATABASE_URL"))
+database = create_engine(
+    os.getenv("DATABASE_URL"),
+    connect_args={"sslmode": "require"}
+)
+
 
 
 class Quote(SQLModel, table=True):
