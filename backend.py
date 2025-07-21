@@ -5,11 +5,10 @@ from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import SQLModel, Field, Session, create_engine, select
 from sqlalchemy import func
-from dotenv import load_dotenv
 import os
 import random
 
-# code
+
 app = FastAPI()
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,8 +27,8 @@ def read_root():
 
 # database
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL")
-database = create_engine(DATABASE_URL)
+sqllite_url = "sqlite:///quotes.db"
+database = create_engine(sqllite_url)
 
 class Quote(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
