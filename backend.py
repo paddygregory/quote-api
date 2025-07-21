@@ -1,6 +1,6 @@
 # requirements 
 
-from fastapi import FastAPI, Path, Body, HTTPException, JSONResponse
+from fastapi import FastAPI, Path, Body, HTTPException
 from starlette.responses import Response
 from pydantic import BaseModel
 from typing import Optional
