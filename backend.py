@@ -29,7 +29,10 @@ def read_root():
 
 # database
 
-database = create_engine(os.getenv("DATABASE_URL"))
+database = create_engine(
+    os.getenv("DATABASE_URL"),
+    connect_args={"client_encoding": "utf8"}
+)
 
 class Quote(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
