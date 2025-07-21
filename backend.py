@@ -1,6 +1,7 @@
 # requirements 
 
 from fastapi import FastAPI, Path, Body, HTTPException, JSONResponse
+from starlette.responses import Response
 from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import SQLModel, Field, Session, create_engine, select
@@ -29,7 +30,7 @@ def read_root():
 
 @app.head("/", include_in_schema=False)
 def head_root():
-    return JSONResponse(headers={"X-App-Status": "Alive"})
+    return Response(headers={"X-App-Status": "Alive"})
 
 
 # database
